@@ -1,7 +1,9 @@
+#（李奇伟 2021.07.13）
 from division import config
 
-
+#表格类（李奇伟 2021.07.13）
 class TableData:
+    #初始化
     def __init__(self, cells, text_height):
         self.cells = cells
         self.text_height = text_height
@@ -55,6 +57,7 @@ class TableData:
         x.sort()
         return x
 
+    #设置每个单元格位置
     def setCellPositition(self):
         row_lines = self.row_lines
         col_lines = self.col_lines
@@ -71,19 +74,17 @@ class TableData:
                 if abs(cell.xr - col_lines[j]) < config.POINT_DIFFERENCE:
                     cell.position[3] = j
                     continue
-            #测试输出
-            #print(cell.position)
 
-
+    #设置表格行高、列宽
     def setTable(self):
         p0 = config.R_TEXT_HEIGHT/self.text_height
         col_widths = []
         row_heights = []
         for i in range(self.col_num):
-            col_width = round(p0*(self.col_lines[i+1] - self.col_lines[i]), 2)
+            col_width = round(p0*(self.col_lines[i+1] - self.col_lines[i]))
             col_widths.append(col_width)
         for j in range(self.row_num):
-            raw_height = round(p0 * (self.row_lines[j + 1] - self.row_lines[j]), 2)
+            raw_height = round(p0 * (self.row_lines[j + 1] - self.row_lines[j]))
             row_heights.append(raw_height)
         self.col_widths = col_widths
         self.row_heights = row_heights

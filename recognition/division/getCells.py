@@ -1,9 +1,10 @@
+#（李奇伟 2021.07.12）
 import cv2
 
 from division.config import *
 from division.getPoints import getResult, getImagePoints
 
-
+#计算边框线占比
 def getCoverage(judge, p1, p2, q, line):
     n = 0
     length = p2 - p1
@@ -17,7 +18,7 @@ def getCoverage(judge, p1, p2, q, line):
                 n = n + 1
     return n / length
 
-
+#获取表格边框
 def getCells(image):
     cells = []
     points, image_col, image_row = getResult(image)

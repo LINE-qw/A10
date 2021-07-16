@@ -1,7 +1,8 @@
+#（李奇伟 2021.07.12）
 import cv2
 import numpy as np
 
-
+#聚焦图片
 def focusImage(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     ret, binary = cv2.threshold(gray, 127, 255, 0)
@@ -11,15 +12,9 @@ def focusImage(image):
     binary[:, -1] = 255
     row_sum = getRowSum(binary)
     imgs = getTextBox(image, row_sum, binary)
-    '''
-    cv2.imshow("1", image)
-    cv2.waitKey(0)
-    for img in imgs:
-        cv2.imshow("1", img)
-        cv2.waitKey(0)'''
     return imgs
 
-
+#获取行统计数组
 def getRowSum(binary):
     row_num = binary.shape[0]
     col_num = binary.shape[1]
@@ -35,7 +30,7 @@ def getRowSum(binary):
                 col_sum[j] = col_sum[j] + 1
     return row_sum
 
-
+#获取文本框
 def getTextBox(image, row_sum, binary):
     row_num = binary.shape[0]
     col_num = binary.shape[1]

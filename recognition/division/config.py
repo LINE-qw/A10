@@ -1,6 +1,7 @@
 
 # 表格单元类（李奇伟 2021.07.10）
 class TableCell:
+    #初始化
     def __init__(self, image, yl, yr, xl, xr):
         self.xl = xl
         self.xr = xr
@@ -17,13 +18,16 @@ class TableCell:
 
 # 表格特征点类（李奇伟 2021.07.10）
 class TPoint:
+    #初始化
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-
+#不同点的区分距离
 POINT_DIFFERENCE = 10
+#判断满足边界框线的合格率
 PASS_RATE = 0.95
+#转化表格高度系数
 R_TEXT_HEIGHT = 14.63
 
 
