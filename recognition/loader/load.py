@@ -3,7 +3,7 @@ from loader.config import *
 import cv2
 
 
-# 加载图片集（李奇伟 2021.07.15）
+# 加载图片集（李奇伟 2021.07.9）
 def loadImages():
     images = []
     image_names = os.listdir(r"./" + IMAGES_PATH)
@@ -13,7 +13,7 @@ def loadImages():
         images.append(image)
     return images
 
-#获取Excel文件路径（李奇伟 2021.07.9）
+#获取Excel文件路径（李奇伟 2021.07.16）
 def getExcelFilePath(file_name):
     excelfile_path = os.path.join(EXCELFILE_PATH, file_name)
     return excelfile_path

@@ -66,7 +66,7 @@ def getCells(image):
 
     return cells
 
-
+#获取表头
 def getHeadCell(image):
     xs, ys, image_col, image_row = getImagePoints(image)
     head_cell = TableCell(image, 0, min(ys), min(xs), max(xs))

@@ -18,7 +18,6 @@ def getTableDatas():
             for text in cell_texts:
                 cell.value = cell.value + text
         text_height = focusImage(cells[0].getCellImage())[0].shape[0]
-        print()
         table_data = TableData(cells, text_height)
         head_cell = getHeadCell(image)
         table_data.head_cell_texts = getHeadText(head_cell.getCellImage())
@@ -35,7 +34,6 @@ def getTableData(image):
         for text in cell_texts:
             cell.value = cell.value + text
     text_height = focusImage(cells[0].getCellImage())[0].shape[0]
-    print()
     table_data = TableData(cells, text_height)
     head_cell = getHeadCell(image)
     table_data.head_cell_texts = getHeadText(head_cell.getCellImage())

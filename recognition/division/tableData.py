@@ -15,7 +15,7 @@ class TableData:
         self.setTable()
         self.head_cell_texts = []#表头数组
 
-    # 获取表格行数
+    # 获取表格行
     def getRowLine(self):
         y = []
         for i in range(len(self.cells)):
@@ -36,7 +36,7 @@ class TableData:
         y.sort()
         return y
 
-    # 获取表格列数
+    # 获取表格列
     def getColLine(self):
         x = []
         for i in range(len(self.cells)):
