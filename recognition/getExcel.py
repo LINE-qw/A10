@@ -28,9 +28,9 @@ def getXls(table):
         worksheet.row(j).height_mismatch = True
         worksheet.row(j).height = 20 * table.row_heights[j]
     h = 1
-    if table.head_cell_texts != "":
+    if len(table.head_cell_texts):
         h = 0
-        name = table.head_cell_texts+".xls"
+        name = table.head_cell_texts[0]+".xls"
         worksheet.write_merge(0, 0, 0, table.col_num - 1, label=table.head_cell_texts, style=title_style())
     for cell in table.cells:
         worksheet.write_merge(cell.position[0] - h, cell.position[2] - h, cell.position[1] - 1, cell.position[3] - 1,
