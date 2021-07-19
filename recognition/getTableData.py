@@ -2,6 +2,7 @@
 from division.getCells import getCells, getHeadCell
 from division.tableData import TableData
 from loader.load import loadImages
+from patch.tablePatch import patchUp
 from texter.getBox import focusImage
 from texter.getText import getHeadText, getCellText
 
@@ -21,6 +22,9 @@ def getTableDatas():
         table_data = TableData(cells, text_height)
         head_cell = getHeadCell(image)
         table_data.head_cell_texts = getHeadText(head_cell.getCellImage())
+        # 优化项
+        table_data.cells = patchUp(cells, table_data.col_num)
+
         table_datas.append(table_data)
     return table_datas
 
@@ -37,4 +41,7 @@ def getTableData(image):
     table_data = TableData(cells, text_height)
     head_cell = getHeadCell(image)
     table_data.head_cell_texts = getHeadText(head_cell.getCellImage())
+    #优化项
+    table_data.cells = patchUp(cells, table_data.col_num)
+
     return table_data
