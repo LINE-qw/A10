@@ -16,7 +16,8 @@ def getExcel():
         image.save(getImagePath(image_name))
         img = loadImage(image_name)
         table = getTableData(img)
-        name = getXls(table)
+        emptyExcels()
+        name = getXls(table,image_name)
         return send_from_directory(getExcelDectionaryPath(),name, as_attachment=True)
     return 'request is not post'
 

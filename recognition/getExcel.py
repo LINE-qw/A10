@@ -19,8 +19,8 @@ def title_style():
 
 
 # 保存excel表并返还文件名称
-def getXls(table):
-    name = "table.xls"
+def getXls(table,name):
+    name = name + ".xls"
     workbook = xlwt.Workbook(encoding='ascii')
     worksheet = workbook.add_sheet('demo')
 
@@ -32,7 +32,6 @@ def getXls(table):
     h = 1
     if table.head_cell_texts[0] != "":
         h = 0
-        name = table.head_cell_texts[0] + ".xls"
         worksheet.write_merge(0, 0, 0, table.col_num - 1, label=table.head_cell_texts, style=title_style())
     for cell in table.cells:
         worksheet.write_merge(cell.position[0] - h, cell.position[2] - h, cell.position[1] - 1, cell.position[3] - 1,

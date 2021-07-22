@@ -1,7 +1,10 @@
 # （李奇伟 2021.07.14）
+import cv2
+
 from division.getCells import getCells, getHeadCell
 from division.tableData import TableData
 from loader.load import loadImages
+from patch.numberPatch import patchNumber
 from patch.tablePatch import patchUp
 from texter.getBox import focusImage
 from texter.getText import getHeadText, getCellText
@@ -12,19 +15,7 @@ def getTableDatas():
     images = loadImages()
     table_datas = []
     for image in images:
-        cells = getCells(image)
-        for cell in cells:
-            imgs = focusImage(cell.getCellImage())
-            cell_texts = getCellText(imgs)
-            for text in cell_texts:
-                cell.value = cell.value + text
-        text_height = focusImage(cells[0].getCellImage())[0].shape[0]
-        table_data = TableData(cells, text_height)
-        head_cell = getHeadCell(image)
-        table_data.head_cell_texts = getHeadText(head_cell.getCellImage())
-        # 优化项
-        table_data.cells = patchUp(cells, table_data.col_num)
-
+        table_data = getTableData(image)
         table_datas.append(table_data)
     return table_datas
 
@@ -37,11 +28,15 @@ def getTableData(image):
         cell_texts = getCellText(imgs)
         for text in cell_texts:
             cell.value = cell.value + text
+        if len(imgs) == 1 and len(cell.value) <= 1:
+            if not '0' < cell.value <= '9':
+                cell.value = patchNumber(imgs[0])
     text_height = focusImage(cells[0].getCellImage())[0].shape[0]
     table_data = TableData(cells, text_height)
     head_cell = getHeadCell(image)
     table_data.head_cell_texts = getHeadText(head_cell.getCellImage())
-    #优化项
+    # 优化项
+
     table_data.cells = patchUp(cells, table_data.col_num)
 
     return table_data

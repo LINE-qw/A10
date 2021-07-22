@@ -40,13 +40,13 @@ def getTextBox(image, row_sum, binary):
 
     i = 0
     is_i1 = True
-    while i < row_num:
+    while i < row_num-3:
         if is_i1:
             if row_sum[i] > 0:
                 i1.append(i)
                 is_i1 = False
         else:
-            if row_sum[i] == 0:
+            if row_sum[i] == 0 and row_sum[i+3] == 0:
                 i2.append(i)
                 is_i1 = True
         i = i + 1

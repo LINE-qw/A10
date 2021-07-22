@@ -31,10 +31,6 @@ def getImagePoints(image):
     # 将识别出来的横竖线合起来
     bitwise_and = cv2.bitwise_and(dilated_col, dilated_row)
 
-    # 标识表格轮廓
-    merge = cv2.add(dilated_col, dilated_row)
-
-
     # 将焦点标识取出来
     ys, xs = np.where(bitwise_and > 0)
 
